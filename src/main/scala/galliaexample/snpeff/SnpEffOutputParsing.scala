@@ -41,7 +41,9 @@ object SnpEffOutputParsing {
       // ===========================================================================
       .transformObject('INFO).using {
         _
-
+        
+            .convert('AC).toInt
+            
             // ---------------------------------------------------------------------------
             .pipe(process('LOF))
           //.pipe(process('NMD)) // works the same way for Nonsense Mediated Decay (not in example though)

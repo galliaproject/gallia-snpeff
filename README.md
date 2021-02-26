@@ -14,7 +14,7 @@ into objects like:
 
 ```json
 {
-  "AC": "1",
+  "AC": 1,
   "LOF": [
     { "Gene_Name": "OR4F5",
       "Gene_ID": "ENSG00000186092",
