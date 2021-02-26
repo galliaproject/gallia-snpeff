@@ -6,12 +6,14 @@ Uses _Gallia_ [transformations](https://github.com/galliaproject/gallia-snpeff/b
 
 to turn values such as:
 
+<a name="input"></a>
 ```plain
 AC=1;ANN=G|start_lost|HIGH|OR4F5|ENSG00000186092|transcript|ENST00000335137|protein_coding|1/1|c.1A>G|p.Met1?|1/918|1/918|1/305||,G-C|start_lost|HIGH|OR4F5|ENSG00000186092|transcript|ENST00000335137|protein_coding|1/1|c.1A>G|p.Leu1?|1/918|1/918|1/305||WARNING_REF_DOES_NOT_MATCH_GENOME,C|initiator_codon_variant|LOW|OR4F5|ENSG00000186092|transcript|ENST00000335137|protein_coding|1/1|c.1A>C|p.Met1?|1/918|1/918|1/305||;LOF=(OR4F5|ENSG00000186092|1|1.00)
 ```
 
 into objects like:
 
+<a name="output"></a>
 ```json
 {
   "AC": 1,
