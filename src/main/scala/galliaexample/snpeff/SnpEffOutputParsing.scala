@@ -31,15 +31,15 @@ object SnpEffOutputParsing {
     _
 
       // ---------------------------------------------------------------------------
-      // "untuplify" -> see https://github.com/galliaproject/gallia-core#why-does-the-terminology-sometimes-sound-funny-or-full-on-neological
-      .untuplify2a('INFO)
+      // "deserialize" -> see https://github.com/galliaproject/gallia-core#why-does-the-terminology-sometimes-sound-funny-or-full-on-neological
+      .deserialize2a('INFO)
         .withSplitters( // see VCF specification (eg "RS=1235;ALLELEID=...")
             entriesSplitter = ";",
               entrySplitter = "=")
           .asNewKeys('AC, 'ANN, 'LOF, 'NMD)
           
       // ===========================================================================
-      .transformObject('INFO).using {
+      .transformEntity('INFO).using {
         _
         
             .convert('AC).toInt
@@ -51,7 +51,7 @@ object SnpEffOutputParsing {
             // ===========================================================================
             // process ANN
       
-           .untuplify1b('ANN)
+           .deserialize1b('ANN)
              .withSplitters(
                  arraySplitter   = ",",
                  entriesSplitter = "|")
@@ -78,7 +78,7 @@ object SnpEffOutputParsing {
             .removeRecursivelyIfValue("") // eg "Distance"        
 
             // ---------------------------------------------------------------------------  
-            .transformObjects('ANN).using {
+            .transformAllEntities('ANN).using {
               _
 
                 // ---------------------------------------------------------------------------
@@ -103,8 +103,8 @@ object SnpEffOutputParsing {
     _   .split(target).by {
           _.tail.init.split("\\),\\(") }
        
-        // "untuplify" -> see https://github.com/galliaproject/gallia-core#why-does-the-terminology-sometimes-sound-funny-or-full-on-neological
-        .untuplify1a(target)
+        // "deserialize" -> see https://github.com/galliaproject/gallia-core#why-does-the-terminology-sometimes-sound-funny-or-full-on-neological
+        .deserialize1a(target)
           .withSplitter("|")
             .asNewKeys(
               // as per meta-information line
@@ -114,7 +114,7 @@ object SnpEffOutputParsing {
               'Percent_of_transcripts_affected)
 
       // ---------------------------------------------------------------------------
-     .transformObjects(target).using {
+     .transformAllEntities(target).using {
         _ .convert('Number_of_transcripts_in_gene  ).toInt    
           .convert('Percent_of_transcripts_affected).toDouble }
   
@@ -123,8 +123,8 @@ object SnpEffOutputParsing {
    *  with values 3 and 14 respectively, and that are to be nested under the new name of "cDNA" */  
   def processSerializedRatio(target: KeyW)(newFieldName1: Key, newFieldName2: Key): HeadS => HeadS =
     _ 
-        // "untuplify" -> see https://github.com/galliaproject/gallia-core#why-does-the-terminology-sometimes-sound-funny-or-full-on-neological
-       .untuplify1a(target.value /* eg AA */)
+        // "deserialize" -> see https://github.com/galliaproject/gallia-core#why-does-the-terminology-sometimes-sound-funny-or-full-on-neological
+       .deserialize1a(target.value /* eg AA */)
          .withSplitter("/")
            .asNewKeys(
              newFieldName1,
