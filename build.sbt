@@ -11,7 +11,7 @@ lazy val root = (project in file("."))
     scmInfo              := Some(ScmInfo(
         browseUrl  = url("https://github.com/galliaproject/gallia-snpeff"),
         connection =     "scm:git@github.com:galliaproject/gallia-snpeff.git")),
-    licenses             := Seq("BSL 1.1" -> url("https://github.com/galliaproject/gallia-snpeff/blob/master/LICENSE")),
+    licenses             := Seq("Apache 2" -> url("https://github.com/galliaproject/gallia-snpeff/blob/master/LICENSE")),
     description          := "A Scala library for data manipulation" )
   .settings(GalliaCommonSettings.mainSettings:_*)
 
